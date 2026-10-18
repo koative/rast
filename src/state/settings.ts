@@ -25,6 +25,7 @@ export const useSettings = create<SettingsState>()(
       setExportDestination: (exportDestination) => set({ exportDestination }),
     }),
     {
+      // Predates the rename to Rast; changing it would reset settings already saved in browsers.
       name: 'rastero.settings',
       version: 1,
       merge: (persisted, current) => {

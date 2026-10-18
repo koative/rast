@@ -1,5 +1,5 @@
 ---
-name: Rastero
+name: Rast
 description: Every image format and quality, measured side by side, in a zero-hue proofing booth.
 colors:
   ground: "#181818"
@@ -100,9 +100,9 @@ components:
     padding: "0 16px"
     height: "35px"
   button-ghost-hover:
-    backgroundColor: "{colors.hover}"
-  button-ghost-active:
     backgroundColor: "{colors.selected}"
+  button-ghost-active:
+    backgroundColor: "{colors.solid-hover}"
   button-solid:
     backgroundColor: "{colors.solid}"
     textColor: "{colors.ink}"
@@ -210,13 +210,13 @@ components:
     height: "48px"
 ---
 
-# Design System: Rastero
+# Design System: Rast
 
 ## Overview
 
 **Creative North Star: "The Proofing Booth"**
 
-Rastero is a press-proof viewing booth for compressed images, not an upload form. The room is true-neutral graphite with zero hue, so the only colour on screen belongs to the photographs and to one process cyan. Every result is already measured along the proof's edge: the proof sits bare in the middle, its caption and readout ride the margin above it, and a strip of 1:1 detail patches runs underneath, led by the original's own crop as the reference every result is judged against.
+Rast is a press-proof viewing booth for compressed images, not an upload form. The room is true-neutral graphite with zero hue, so the only colour on screen belongs to the photographs and to one process cyan. Every result is already measured along the proof's edge: the proof sits bare in the middle, its caption and readout ride the margin above it, and a strip of 1:1 detail patches runs underneath, led by the original's own crop as the reference every result is judged against.
 
 Density is that of a working instrument: a 54px top bar, a ~300px rail of image rows, a large proof, and quiet 13–16px type with tabular figures for every number. Surfaces are flat planes separated by hairlines; floating layers (menus, notices, the shortcuts panel) rise by one tone step and a stronger hairline, never by a drop shadow. Motion is short and practical: things fade in where they will stay, the blurred thumbnail holds the frame while the sharp image decodes, and nothing waits on a transition.
 
@@ -228,26 +228,26 @@ Confirmed rejections: the dashed drop box feeding a list of percentage badges; r
 - Readouts live in the margins around the proof; results land in place without layout jumps.
 - Flat planes, tone-and-hairline elevation, no drop shadows on floating layers.
 - Inter Variable with `cv11`; tabular figures for every size, dimension, count and quality.
-- A pixel-R brand mark whose cells shrink left to right, on a cyan tile.
+- A pixel-R brand mark whose cells shrink left to right, in ink on a graphite tile: the brand is neutral, so cyan only ever means act, picked or saved.
 
 ## Colors
 
 A true-neutral graphite ladder carrying a single process cyan, with one coral reserved for errors.
 
 ### Primary
-- **Process Cyan** (`accent`): the brand mark tile, the primary action ("Download all", "Choose images"), the picked result (patch outline, check badge, picked figures, tier radio), savings figures in the rail and summary, the slider fill, batch and encode progress lines, focus rings, and link buttons. Its hover (`accent-hover`) lifts lighter, its press (`accent-press`) sinks deeper.
-- **Cyan Ink** (`accent-ink`): text and glyphs set on cyan (primary button labels, the pixel R, check marks). Never used on graphite.
+- **Process Cyan** (`accent`): the primary action ("Download all", "Choose images"), the picked result (patch outline, check badge, picked figures, tier radio), savings figures in the rail and summary, the slider fill, batch and encode progress lines, focus rings, and link buttons. Never the brand mark. Its hover (`accent-hover`) lifts lighter, its press (`accent-press`) sinks deeper.
+- **Cyan Ink** (`accent-ink`): text and glyphs set on cyan (primary button labels, check marks). Never used on graphite.
 - **Cyan Wash** (`accent-soft`): text selection only.
 
 ### Neutral
 - **Booth Graphite** (`ground`): the app surround, top bar, sticky table header and scrollbar gutter.
 - **Rail Graphite** (`rail`): the image rail and the view-tools pill; one step off the ground so the rail reads as a separate plane.
 - **Raised Band** (`raised`): the selected row band in the proof table.
-- **Hover Tone** (`hover`): hover on rows, ghost buttons, icon buttons and tier rows; also the empty patch frame.
+- **Hover Tone** (`hover`): hover on rows, icon buttons and tier rows; also the empty patch frame.
 - **Float Tone** (`float`): menus, notices, the shortcuts panel.
-- **Selection Tone** (`selected`): the current rail row, pressed icon buttons, menu-item hover/focus, ghost-button press, the neutral count badge.
-- **Hairline** (`hairline`) / **Strong Hairline** (`hairline-strong`) / **Hover Hairline** (`hairline-hover`): plane dividers; ghost-button and floating-layer borders plus the slider track; hovered ghost borders, hovered patches and table cells, the loupe frame and the tier radio ring.
-- **Solid Object** (`solid`, hover `solid-hover`): the neutral solid button used for single-file downloads and secondary actions; carries a 6% white top inset highlight.
+- **Selection Tone** (`selected`): the current rail row, pressed icon buttons, menu-item hover/focus, ghost-button hover, the neutral count badge.
+- **Hairline** (`hairline`) / **Strong Hairline** (`hairline-strong`) / **Hover Hairline** (`hairline-hover`): plane dividers; floating-layer borders plus the slider track; hovered patches and table cells, the loupe frame and the tier radio ring.
+- **Solid Object** (`solid`, hover `solid-hover`): the neutral solid button used for single-file downloads and secondary actions, carrying a 6% white top inset highlight; also the brand mark's tile. `solid-hover` doubles as the ghost-button press.
 - **Proof Backing** (`proof-backing`): the dark behind the proof canvas, loupe and inspector crops.
 - **Checkerboard** (`checker-light` / `checker-dark`): alpha backing for transparent images, 16px squares on the proof, 12px on patches and the inspector.
 - **Handle White** (`handle`): the before/after divider line and its knob, and the slider thumb: the only near-white objects in the UI.
@@ -271,9 +271,9 @@ A true-neutral graphite ladder carrying a single process cyan, with one coral re
 
 ### Hierarchy
 - **Display** (600, 1.75rem, 1.2, −0.025em): the empty-state headline only; drops to the Headline size (1.25rem) at ≤860px.
-- **Headline** (600, 1.25rem, −0.02em): the "Rastero" wordmark beside the logo mark.
+- **Headline** (600, 1.25rem, −0.02em): the "Rast" wordmark beside the logo mark.
 - **Title** (400, 1rem, 1.4): proof caption and readout, quality label, inspector section headings (500), empty-state lead (max 44ch).
-- **Body** (400/500, 0.9375rem, 1.4): the base size: buttons (500), rail names (500), strip labels, patch quality and size, table cells.
+- **Body** (400/500, 0.9375rem, 1.4): the base size: buttons (500), rail names (500), strip format labels, patch quality and size, table cells.
 - **Body Small** (400, 0.875rem): menus, batch summary, notices, shortcut lists, small buttons, facts row.
 - **Label** (400/500, 0.8125rem): counts, rail file sizes, dimensions, menu hints and group labels, loupe and crop captions; also patch figures when a patch is ≤84px wide. Sentence case; never uppercase-tracked.
 - **Micro** (400, 0.75rem): patch quality and size captions only, and only when a patch shrinks to ≤66px wide (container query), so figures stay whole instead of truncating. Not for general UI text.
@@ -330,7 +330,7 @@ Depth is tonal. Planes step from ground (#181818) to rail, hover, float and sele
 
 Softly squared and small: 4px on patches, thumbs, menu items and labels; 6px on buttons and icon buttons; 8px on menus, notices, the shortcuts panel and the inspector download. The proof and inspector proof keep a near-square 2px corner so the image reads as a print, not a card. The view-tools pill and count badges use 10px; the divider knob, slider thumb, check badge and tier radio are circles.
 
-The brand mark is a 32-unit cyan tile with 8-unit corners carrying an R drawn on a 5×7 raster on a 3.35 pitch, in Cyan Ink. Its cells shrink gently column by column (3.1, 2.95, 2.75, 2.55, 2.3 units): an image getting smaller as it compresses, while still reading as an R at 16px favicon size. It renders at 26px in the top bar and 52px in the empty state; the favicon, app icons and OG card use the same drawing.
+The brand mark is a 32-unit graphite tile (`solid`, #2a2a2a) with 8-unit corners carrying an R drawn in Ink on a 4×6 raster at a 4.5 pitch. Its cells shrink column by column (4.3, 4.05, 3.75, 3.4 units): an image getting smaller as it compresses, still reading as an R at 16px favicon size and on light and dark browser tabs. It renders at 26px beside the "Rast" wordmark in the top bar and 52px in the empty state; the favicon, app icons (full-bleed graphite for iOS and maskable) and OG card use the same drawing.
 
 ### Named Rules
 **The Bare Proof Rule.** The proof is the image, a 2px corner and a 6% white hairline, on a checkerboard if it has alpha. No frames, corner marks, crosshairs, captions over the image, or dashed boxes.
@@ -341,10 +341,10 @@ The brand mark is a 32-unit cyan tile with 8-unit corners carrying an R drawn on
 Solid, compact and legible; every button is an object with a clear label.
 - **Shape:** gently squared (6px), 35px tall, 16px sides, 8px icon gap, 16px icons, weight 500.
 - **Primary:** Process Cyan with Cyan Ink text; used once per view for the main exit ("Download all" with a count badge, "Choose images"). Hover lightens, press deepens, 150ms ease-out.
-- **Ghost:** transparent with a strong hairline border and Ink text; top-bar Formats and Add images. Hover takes the hover tone and hover hairline; press takes the selection tone.
+- **Ghost:** no fill and no border, Ink text and icon; top-bar Formats and Add images. Hover takes the selection tone; press takes `solid-hover`. Only the cyan primary carries a shape at rest, so the top bar reads as one action plus quiet tools.
 - **Solid:** the neutral object (#2a2a2a) with a 6% top light; single-file Download beside the readout, Choose folder, Apply to all images.
 - **Small:** 30px tall, 12px sides, 14px text, 15px icons (readout Download, Apply to all).
-- **Split:** a main action fused to a 32px caret that opens a menu; ghost halves share a border, primary halves divide with a faint ink inset line.
+- **Split:** a main action fused to a 32px caret that opens a menu; ghost halves hover independently, primary halves divide with a faint ink inset line.
 - **Link:** cyan text with an underline on hover (Reset, sample photos); disabled drops to Ink 3.
 - **Quiet link:** inherits the surrounding ink with a strong-hairline underline that turns to the text colour on hover; for secondary destinations (source code, licenses), never cyan.
 - **Disabled:** 40% opacity (35% for icon buttons). Reset stays visible and disabled until a result is tuned.
@@ -384,7 +384,7 @@ A 4px-padded rail-tone pill with a hairline border, vertical in the right margin
 A pixelated 1:1 magnifier seated in the proof's bottom-right corner, 1px apart halves (Original | result) framed by the hover hairline with 6px (`md`) corners, each labelled in a small dark caption chip.
 
 ### Detail Patch Strip
-Square 1:1 crops from the same region of every result, grouped by format under "AVIF 3 results"-style labels, each with quality and size beneath in tabular figures. The Original group leads with the source crop. Hover draws a 1px hover-hairline outline; the pick draws a 2px cyan outline, a 22px cyan check badge and cyan figures. Pending patches show a progress line with text; failed ones show coral text. Pixels fade in over 220ms when they land.
+Square 1:1 crops from the same region of every result, grouped under plain format labels ("Original", "AVIF", "WebP"…; the patches themselves show how many there are), each with quality and size beneath in tabular figures. The Original group leads with the source crop. Hover draws a 1px hover-hairline outline; the pick draws a 2px cyan outline, a 22px cyan check badge and cyan figures. Pending patches show a progress line with text; failed ones show coral text. Pixels fade in over 220ms when they land.
 
 ### Inspector Download
 A 48px solid object at the bottom of the inspector: download icon, the verb, then the exact file name and size right-aligned in Ink 2.
@@ -396,7 +396,7 @@ The 52px logo mark, one Display headline ("Drop images or a folder"), a Title le
 
 ### Do:
 - **Do** keep every surface, border and text colour zero-chroma graphite from the token ladder; let the photographs carry the colour.
-- **Do** reserve Process Cyan for the brand mark, the one primary action, the pick/focus, and bytes saved.
+- **Do** reserve Process Cyan for the one primary action, the pick/focus, and bytes saved; the brand mark stays graphite and ink.
 - **Do** make secondary actions solid graphite objects (#2a2a2a with a 6% top light), labelled with a verb.
 - **Do** raise floating layers by the float tone and a strong hairline with 8px corners.
 - **Do** set every figure in tabular numerals and keep UI text at 400/500.

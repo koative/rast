@@ -60,7 +60,7 @@ export async function saveToDirectory(entries: ExportEntry[]): Promise<{ written
   if (!picker) throw new Error('Saving to a folder is not supported in this browser')
   let root: FileSystemDirectoryHandle
   try {
-    root = await picker({ mode: 'readwrite', id: 'rastero-export' })
+    root = await picker({ mode: 'readwrite', id: 'rast-export' })
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') return null
     throw err

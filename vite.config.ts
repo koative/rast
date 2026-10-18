@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, realpathSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
@@ -12,7 +12,7 @@ const SOURCE_URL = String(PACKAGE.repository.url).replace(/^git\+/, '').replace(
 
 /**
  * Relative base: every URL in the build resolves against the page, so the same build works at a domain
- * root or under any path GitHub Pages gives the repository (koray.dev/rastero/) without naming it here.
+ * root or under any path GitHub Pages gives the repository (koray.dev/rast/) without naming it here.
  */
 const BASE = './'
 
@@ -48,7 +48,7 @@ const CSP = [
 
 function contentSecurityPolicy(): Plugin {
   return {
-    name: 'rastero-csp',
+    name: 'rast-csp',
     apply: 'build',
     transformIndexHtml: () => [
       { tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: CSP }, injectTo: 'head-prepend' },
@@ -62,7 +62,7 @@ function contentSecurityPolicy(): Plugin {
  */
 function serviceWorker(): Plugin {
   return {
-    name: 'rastero-service-worker',
+    name: 'rast-service-worker',
     apply: 'build',
     generateBundle(_options, bundle) {
       const shell = ['./', './favicon.svg', './manifest.webmanifest', './icons/icon-192.png']
@@ -81,11 +81,14 @@ function serviceWorker(): Plugin {
   }
 }
 
-/** Finds a dependency the way Node does: the nearest node_modules walking up from its dependent. */
+/**
+ * Finds a dependency the way Node does: the nearest node_modules walking up from its dependent's real path
+ * (isolated installs keep a package's dependencies beside its real directory, not under the symlink).
+ */
 function packageDir(name: string, from: string): string {
   for (let dir = from; ; dir = dirname(dir)) {
     const candidate = join(dir, 'node_modules', name)
-    if (existsSync(join(candidate, 'package.json'))) return candidate
+    if (existsSync(join(candidate, 'package.json'))) return realpathSync(candidate)
     if (dir === dirname(dir)) throw new Error(`license notices: ${name} is not installed (needed by ${from})`)
   }
 }
@@ -105,7 +108,7 @@ function noticeFiles(dir: string, depth = 0): string[] {
 }
 
 /**
- * licenses.txt: Rastero's GPL notice, then every production dependency (walked transitively) with the license
+ * licenses.txt: Rast's GPL notice, then every production dependency (walked transitively) with the license
  * files it ships, then the upstream codec libraries compiled into those packages' wasm (licenses/*.txt, which
  * the packages don't ship themselves), then the GPL text. Identical texts are printed once.
  */
@@ -133,10 +136,10 @@ function licenseNotices(): string {
     return `${rule}\n${title}\n${rule}\n\n${first ? `Same text as ${first} above.` : text.trim()}\n\n`
   }
 
-  let out = `Rastero
+  let out = `Rast
 Copyright (C) 2026 Koray Guler
 
-Rastero is free software: you can redistribute it and/or modify it under the terms of the GNU General
+Rast is free software: you can redistribute it and/or modify it under the terms of the GNU General
 Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
 option) any later version. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
@@ -162,13 +165,13 @@ ${upstream.map((f) => `  ${readFileSync(join(ROOT, 'licenses', f), 'utf8').split
     const [title, ...text] = readFileSync(join(ROOT, 'licenses', f), 'utf8').split('\n')
     out += section(title, text.join('\n'))
   }
-  return out + section('GNU General Public License v3 (Rastero, libimagequant)', readFileSync(join(ROOT, 'LICENSE'), 'utf8'))
+  return out + section('GNU General Public License v3 (Rast, libimagequant)', readFileSync(join(ROOT, 'LICENSE'), 'utf8'))
 }
 
 /** Serves licenses.txt in dev and emits it with the build, where the app links to it. */
 function licenses(): Plugin {
   return {
-    name: 'rastero-licenses',
+    name: 'rast-licenses',
     configureServer(server) {
       server.middlewares.use('/licenses.txt', (_req, res) => {
         res.setHeader('Content-Type', 'text/plain; charset=utf-8')

@@ -1,4 +1,4 @@
-libimagequant (https://github.com/ImageOptim/libimagequant), compiled into libimagequant-wasm; GPL-3.0-or-later (full text at the end of licenses.txt and in Rastero's LICENSE)
+libimagequant (https://github.com/ImageOptim/libimagequant), compiled into libimagequant-wasm; GPL-3.0-or-later (full text at the end of licenses.txt and in Rast's LICENSE)
 
 
 libimagequant is derived from code by Jef Poskanzer and Greg Roelofs

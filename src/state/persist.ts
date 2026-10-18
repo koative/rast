@@ -57,6 +57,7 @@ export interface SavedSession {
   variants: SavedVariant[]
 }
 
+// Storage names predate the rename to Rast; changing them would strand sessions already saved in browsers.
 const DB_NAME = 'rastero'
 const DB_VERSION = 1
 const META_KEY = 'session'

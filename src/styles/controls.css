@@ -22,18 +22,17 @@
   flex: none;
 }
 
+/* Ghost: text and icon on the ground, no outline; the tone appears under the pointer. */
 .btn-ghost {
-  border: 1px solid var(--hairline-strong);
   color: var(--ink);
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background: var(--hover);
-  border-color: #4a4a4a;
+  background: var(--selected);
 }
 
 .btn-ghost:active:not(:disabled) {
-  background: var(--selected);
+  background: #333;
 }
 
 .btn-primary {
@@ -96,10 +95,6 @@
   padding: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.split > .btn-ghost + .btn-ghost {
-  border-left-color: transparent;
 }
 
 .split > .btn-primary + .btn-primary {

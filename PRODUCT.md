@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Vite + React + TypeScript, Bun as package manager, script runner and test runner. Image codecs are WebAssembly (jSquash: MozJPEG, libwebp, libavif, OxiPNG, libjxl; libimagequant; libheif for HEIC input) running in a Web Worker pool. Deployed as a static site on GitHub Pages at https://koray.dev/rastero/ (relative asset base, CSP as a meta tag). License: GPL-3.0-or-later, because the bundled libimagequant (lossy PNG) is GPL; the build ships every third-party license in licenses.txt and the app links to its source.
+Vite + React + TypeScript, Bun as package manager, script runner and test runner. Image codecs are WebAssembly (jSquash: MozJPEG, libwebp, libavif, OxiPNG, libjxl; libimagequant; libheif for HEIC input) running in a Web Worker pool. Deployed as a static site on GitHub Pages at https://koray.dev/rast/ (relative asset base, CSP as a meta tag). License: GPL-3.0-or-later, because the bundled libimagequant (lossy PNG) is GPL; the build ships every third-party license in licenses.txt and the app links to its source.
 
 ## Users
 
@@ -16,11 +16,11 @@ Primarily developers and site owners deciding which image format and quality to 
 
 ## Product Purpose
 
-Rastero compresses images entirely in the browser. Drop or pick images or whole folders; every image is encoded in all enabled formats at several quality tiers at once, so the size and savings of each option are visible side by side. The user downloads any single result, or exports a chosen result per image as a ZIP that keeps the folder structure, or writes straight into a folder where the browser allows it. Success: the user knows which format/quality to ship and leaves with the files, without uploading anything.
+Rast compresses images entirely in the browser. Drop or pick images or whole folders; every image is encoded in all enabled formats at several quality tiers at once, so the size and savings of each option are visible side by side. The user downloads any single result, or exports a chosen result per image as a ZIP that keeps the folder structure, or writes straight into a folder where the browser allows it. Success: the user knows which format/quality to ship and leaves with the files, without uploading anything.
 
 ## Positioning
 
-Other browser compressors make you pick one output format first (Squoosh: one image; Squish, Pic Smaller: one format per batch). Rastero answers the question before it is asked: every format and tier per image, measured, in one view, with the real encoded pixels to judge. It grew from a hand-made comparison page (PNG vs JPEG q80 vs AVIF crf 24/28/32/38 across 19 real CDN thumbnails) and turns that into a tool.
+Other browser compressors make you pick one output format first (Squoosh: one image; Squish, Pic Smaller: one format per batch). Rast answers the question before it is asked: every format and tier per image, measured, in one view, with the real encoded pixels to judge. It grew from a hand-made comparison page (PNG vs JPEG q80 vs AVIF crf 24/28/32/38 across 19 real CDN thumbnails) and turns that into a tool.
 
 ## Operating Context
 
@@ -39,7 +39,8 @@ Other browser compressors make you pick one output format first (Squoosh: one im
 
 ## Brand Commitments
 
-- Name: Rastero.
+- Name: Rast (renamed from Rastero; short for raster, and Turkish "rast gitmek", to go right). Repository raelsei/rast.
+- Studio restraint: the brand mark is neutral (ink on graphite); colour belongs to the photographs and to the one action cyan.
 - Dark interface.
 - Reference for tone and craft: Photoroom: simple, focused, high quality.
 - Must not feel like: a settings-heavy pro tool, a toy (emoji, cute illustration, loud color), a marketing page (hero, slogans, CTAs; the app opens straight into work), or a showcase of effects (waiting transitions, glow, glass).

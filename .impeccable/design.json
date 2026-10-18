@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-09-30T06:34:05+00:00",
-  "title": "Design System: Rastero",
+  "title": "Design System: Rast",
   "extensions": {
     "colorMeta": {
       "ground": {
@@ -372,7 +372,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "The Rastero wordmark beside the logo mark."
+        "purpose": "The Rast wordmark beside the logo mark."
       },
       "title": {
         "displayName": "Title",
@@ -519,7 +519,7 @@
       "refersTo": "button-ghost",
       "description": "Top-bar Add images: hairline-bordered, transparent, with a caret menu.",
       "html": "<div class=\"ds-split-g\"><button class=\"ds-btn-ghost\">Add images</button><button class=\"ds-btn-ghost ds-caret-g\" aria-label=\"More ways to add\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></div>",
-      "css": ".ds-split-g{display:inline-flex;}.ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:35px;padding:0 16px;border:0;border-radius:var(--radius, 6px);font-family:var(--font, 'Inter Variable', Inter, system-ui, sans-serif);font-size:0.9375rem;font-weight:500;white-space:nowrap;cursor:pointer;transition:background-color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),border-color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));background:transparent;border:1px solid var(--hairline-strong, #3a3a3a);color:var(--ink, #ececec);}.ds-btn-ghost:hover{background:var(--hover, #222222);border-color:#4a4a4a;}.ds-btn-ghost:active{background:var(--selected, #292929);}.ds-btn-ghost:focus-visible{outline:2px solid var(--accent, #19caf7);outline-offset:2px;}.ds-split-g>.ds-btn-ghost:first-child{border-top-right-radius:0;border-bottom-right-radius:0;}.ds-caret-g{width:32px;padding:0;border-left-color:transparent;border-top-left-radius:0;border-bottom-left-radius:0;}"
+      "css": ".ds-split-g{display:inline-flex;}.ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:35px;padding:0 16px;border:0;border-radius:var(--radius, 6px);font-family:var(--font, 'Inter Variable', Inter, system-ui, sans-serif);font-size:0.9375rem;font-weight:500;white-space:nowrap;cursor:pointer;transition:background-color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),border-color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),color 150ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));background:transparent;color:var(--ink, #ececec);}.ds-btn-ghost:hover{background:var(--selected, #292929);}.ds-btn-ghost:active{background:#333;}.ds-btn-ghost:focus-visible{outline:2px solid var(--accent, #19caf7);outline-offset:2px;}.ds-split-g>.ds-btn-ghost:first-child{border-top-right-radius:0;border-bottom-right-radius:0;}.ds-caret-g{width:32px;padding:0;border-left-color:transparent;border-top-left-radius:0;border-bottom-left-radius:0;}"
     },
     {
       "name": "Solid Button",
@@ -581,21 +581,21 @@
       "name": "Brand Mark",
       "kind": "custom",
       "refersTo": "brand-mark",
-      "description": "Pixel R on a cyan tile whose cells shrink gently left to right (3.1→2.3 units); 26px with the wordmark, 52px in the empty state, legible at 16px.",
-      "html": "<span class=\"ds-wordmark\"><svg width=\"26\" height=\"26\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"8\" fill=\"#19caf7\"/><g fill=\"#062530\"><rect x=\"7.75\" y=\"4.4\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"11.175\" y=\"4.475\" width=\"2.95\" height=\"2.95\" rx=\"0.4\"/><rect x=\"14.625\" y=\"4.575\" width=\"2.75\" height=\"2.75\" rx=\"0.4\"/><rect x=\"18.075\" y=\"4.675\" width=\"2.55\" height=\"2.55\" rx=\"0.4\"/><rect x=\"7.75\" y=\"7.75\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"21.55\" y=\"8.15\" width=\"2.3\" height=\"2.3\" rx=\"0.4\"/><rect x=\"7.75\" y=\"11.1\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"21.55\" y=\"11.5\" width=\"2.3\" height=\"2.3\" rx=\"0.4\"/><rect x=\"7.75\" y=\"14.45\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"11.175\" y=\"14.525\" width=\"2.95\" height=\"2.95\" rx=\"0.4\"/><rect x=\"14.625\" y=\"14.625\" width=\"2.75\" height=\"2.75\" rx=\"0.4\"/><rect x=\"18.075\" y=\"14.725\" width=\"2.55\" height=\"2.55\" rx=\"0.4\"/><rect x=\"7.75\" y=\"17.8\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"14.625\" y=\"17.975\" width=\"2.75\" height=\"2.75\" rx=\"0.4\"/><rect x=\"7.75\" y=\"21.15\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"18.075\" y=\"21.425\" width=\"2.55\" height=\"2.55\" rx=\"0.4\"/><rect x=\"7.75\" y=\"24.5\" width=\"3.1\" height=\"3.1\" rx=\"0.4\"/><rect x=\"21.55\" y=\"24.9\" width=\"2.3\" height=\"2.3\" rx=\"0.4\"/></g></svg><span>Rastero</span></span>",
+      "description": "Pixel R in ink on a graphite tile (#2a2a2a), cells shrinking left to right on a 4×6 raster (4.3→3.4 units); 26px with the wordmark, 52px in the empty state, legible at 16px.",
+      "html": "<span class=\"ds-wordmark\"><svg width=\"26\" height=\"26\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"8\" fill=\"#2a2a2a\"/><g fill=\"#ececec\"><rect x=\"7.1\" y=\"2.6\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"11.725\" y=\"2.725\" width=\"4.05\" height=\"4.05\" rx=\"0.45\"/><rect x=\"16.375\" y=\"2.875\" width=\"3.75\" height=\"3.75\" rx=\"0.45\"/><rect x=\"7.1\" y=\"7.1\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"21.05\" y=\"7.55\" width=\"3.4\" height=\"3.4\" rx=\"0.45\"/><rect x=\"7.1\" y=\"11.6\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"21.05\" y=\"12.05\" width=\"3.4\" height=\"3.4\" rx=\"0.45\"/><rect x=\"7.1\" y=\"16.1\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"11.725\" y=\"16.225\" width=\"4.05\" height=\"4.05\" rx=\"0.45\"/><rect x=\"16.375\" y=\"16.375\" width=\"3.75\" height=\"3.75\" rx=\"0.45\"/><rect x=\"7.1\" y=\"20.6\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"16.375\" y=\"20.875\" width=\"3.75\" height=\"3.75\" rx=\"0.45\"/><rect x=\"7.1\" y=\"25.1\" width=\"4.3\" height=\"4.3\" rx=\"0.45\"/><rect x=\"21.05\" y=\"25.55\" width=\"3.4\" height=\"3.4\" rx=\"0.45\"/></g></svg><span>Rast</span></span>",
       "css": ".ds-wordmark{display:inline-flex;align-items:center;gap:10px;color:var(--ink, #ececec);font-family:var(--font, 'Inter Variable', Inter, system-ui, sans-serif);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;}.ds-wordmark svg{flex:none;}"
     }
   ],
   "narrative": {
     "northStar": "The Proofing Booth",
-    "overview": "Rastero is a press-proof viewing booth for compressed images, not an upload form. The room is true-neutral graphite with zero hue, so the only colour on screen belongs to the photographs and to one process cyan. Every result is already measured along the proof's edge: the proof sits bare in the middle, its caption and readout ride the margin above it, and a strip of 1:1 detail patches runs underneath, led by the original's own crop as the reference every result is judged against.\n\nDensity is that of a working instrument: a 54px top bar, a ~300px rail of image rows, a large proof, and quiet 13–16px type with tabular figures for every number. Surfaces are flat planes separated by hairlines; floating layers (menus, notices, the shortcuts panel) rise by one tone step and a stronger hairline, never by a drop shadow. Motion is short and practical: things fade in where they will stay, the blurred thumbnail holds the frame while the sharp image decodes, and nothing waits on a transition.\n\nConfirmed rejections: the dashed drop box feeding a list of percentage badges; registration crosshairs or corner pointers around the proof (removed at the user's request); glow, glass and showcase effects; loud colour, emoji and cute illustration.",
+    "overview": "Rast is a press-proof viewing booth for compressed images, not an upload form. The room is true-neutral graphite with zero hue, so the only colour on screen belongs to the photographs and to one process cyan. Every result is already measured along the proof's edge: the proof sits bare in the middle, its caption and readout ride the margin above it, and a strip of 1:1 detail patches runs underneath, led by the original's own crop as the reference every result is judged against.\n\nDensity is that of a working instrument: a 54px top bar, a ~300px rail of image rows, a large proof, and quiet 13–16px type with tabular figures for every number. Surfaces are flat planes separated by hairlines; floating layers (menus, notices, the shortcuts panel) rise by one tone step and a stronger hairline, never by a drop shadow. Motion is short and practical: things fade in where they will stay, the blurred thumbnail holds the frame while the sharp image decodes, and nothing waits on a transition.\n\nConfirmed rejections: the dashed drop box feeding a list of percentage badges; registration crosshairs or corner pointers around the proof (removed at the user's request); glow, glass and showcase effects; loud colour, emoji and cute illustration.",
     "keyCharacteristics": [
       "Zero-hue graphite ground (#181818 family); photographs and one cyan are the only colour.",
       "The proof is a bare image on a 1px 6% white hairline; transparent images sit on a checkerboard.",
       "Readouts live in the margins around the proof; results land in place without layout jumps.",
       "Flat planes, tone-and-hairline elevation, no drop shadows on floating layers.",
       "Inter Variable with `cv11`; tabular figures for every size, dimension, count and quality.",
-      "A pixel-R brand mark whose cells shrink left to right, on a cyan tile."
+      "A pixel-R brand mark whose cells shrink left to right, in ink on a graphite tile: the brand is neutral, so cyan only ever means act, picked or saved."
     ],
     "rules": [
       {
@@ -651,7 +651,7 @@
     ],
     "dos": [
       "Do keep every surface, border and text colour zero-chroma graphite from the token ladder; let the photographs carry the colour.",
-      "Do reserve Process Cyan for the brand mark, the one primary action, the pick/focus, and bytes saved.",
+      "Do reserve Process Cyan for the one primary action, the pick/focus, and bytes saved; the brand mark stays graphite and ink.",
       "Do make secondary actions solid graphite objects (#2a2a2a with a 6% top light), labelled with a verb.",
       "Do raise floating layers by the float tone and a strong hairline with 8px corners.",
       "Do set every figure in tabular numerals and keep UI text at 400/500.",

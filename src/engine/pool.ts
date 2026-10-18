@@ -177,7 +177,7 @@ export class CodecPool {
   #spawn(): Slot {
     const worker = new Worker(new URL('./worker/codec.worker.ts', import.meta.url), {
       type: 'module',
-      name: `rastero-codec-${this.#slots.length + 1}`,
+      name: `rast-codec-${this.#slots.length + 1}`,
     })
     const slot: Slot = { worker, job: null, imageId: null }
     worker.onmessage = (event: MessageEvent<WorkerResponse>) => this.#onMessage(slot, event.data)

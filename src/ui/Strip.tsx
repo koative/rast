@@ -45,7 +45,7 @@ export function Strip({ image, pickKey }: { image: ImageEntry; pickKey: string |
   return (
     <section className="strip" aria-label="Results">
       <div className="strip-groups" ref={scroller} data-overflow={overflow}>
-        <Group label="Original" count={null} n={1}>
+        <Group label="Original" n={1}>
           <PatchButton
             picked={pickKey === ORIGINAL}
             disabled={false}
@@ -59,7 +59,7 @@ export function Strip({ image, pickKey }: { image: ImageEntry; pickKey: string |
           />
         </Group>
         {groups.map((group) => (
-          <Group key={group.label} label={group.label} count={group.variants.length} n={group.variants.length}>
+          <Group key={group.label} label={group.label} n={group.variants.length}>
             {group.variants.map((v) => (
               <Patch key={v.key} image={image} variant={v} picked={v.key === pickKey} patchEdge={patchEdge} />
             ))}
@@ -70,17 +70,10 @@ export function Strip({ image, pickKey }: { image: ImageEntry; pickKey: string |
   )
 }
 
-function Group({ label, count, n, children }: { label: string; count: number | null; n: number; children: ReactNode }) {
+function Group({ label, n, children }: { label: string; n: number; children: ReactNode }) {
   return (
     <div className="strip-group" role="group" aria-label={label} style={{ '--n': n } as CSSProperties}>
-      <div className="strip-label">
-        <span>{label}</span>
-        {count !== null && (
-          <span className="strip-count num">
-            {count} {count === 1 ? 'result' : 'results'}
-          </span>
-        )}
-      </div>
+      <div className="strip-label">{label}</div>
       <div className="strip-patches">{children}</div>
     </div>
   )

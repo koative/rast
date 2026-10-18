@@ -87,7 +87,7 @@ let storageWarned = false
 /** Saving is best effort: the session keeps working in memory, and the user hears once if it can't be kept. */
 function persist(task: Promise<void>) {
   task.catch((error: unknown) => {
-    console.warn('Rastero: saving the session failed', error)
+    console.warn('Rast: saving the session failed', error)
     if (storageWarned) return
     storageWarned = true
     const full = error instanceof DOMException && error.name === 'QuotaExceededError'
@@ -503,7 +503,7 @@ export async function restoreSession() {
   try {
     saved = await loadSaved()
   } catch (error) {
-    console.warn('Rastero: could not read the saved session', error)
+    console.warn('Rast: could not read the saved session', error)
   }
   if (!saved) {
     useSession.setState({ restored: true })
@@ -646,6 +646,6 @@ function zipName(): string {
   const { images, order } = useSession.getState()
   const folders = new Set(order.map((id) => images[id].relativePath.split('/')[0]))
   const first = images[order[0]]
-  const root = folders.size === 1 && first.folder !== '' ? first.relativePath.split('/')[0] : 'rastero'
+  const root = folders.size === 1 && first.folder !== '' ? first.relativePath.split('/')[0] : 'rast'
   return `${root}-compressed.zip`
 }

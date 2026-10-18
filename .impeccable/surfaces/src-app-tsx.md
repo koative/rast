@@ -5,7 +5,7 @@ primary_target: "src/App.tsx"
 related_targets: []
 ---
 
-# Rastero app surface
+# Rast app surface
 
 Scope: the whole single-page app (`src/App.tsx` and its components). Mode: Operate.
 Audience and job: developers first, designers second; decide which format and quality to ship for one image or a folder of hundreds, then leave with the files.
@@ -17,7 +17,7 @@ Memorable moment: every format and tier is already on the proof, measured, the m
 
 THESIS: A proofing booth, not an upload form. Every result is already measured along the proof's edge; refuse the dashed drop box feeding a list of percentage badges.
 
-OWN-WORLD: True-neutral graphite with zero hue (#181818 surround, #1a1a1a rail, #292929 selection, #2c2c2c hairlines) so only photographs carry colour. One process cyan (#19caf7) for the brand mark, selection, the primary action and savings figures. The proof is a bare image on a 1px 6% white hairline; transparent images sit on an editor checkerboard. Inter, tabular figures. Flat planes; floating layers rise by tone and hairline, no drop shadows. Mark: a pixel R whose cells shrink left to right.
+OWN-WORLD: True-neutral graphite with zero hue (#181818 surround, #1a1a1a rail, #292929 selection, #2c2c2c hairlines) so only photographs carry colour. One process cyan (#19caf7) for selection, the primary action and savings figures. The proof is a bare image on a 1px 6% white hairline; transparent images sit on an editor checkerboard. Inter, tabular figures. Flat planes; floating layers rise by tone and hairline, no drop shadows. Mark: a pixel R whose cells shrink left to right, ink on a graphite tile.
 
 STORY: Drop images or a folder; each becomes a proof with every result at its edge; judge by pixels (split divider, 1:1 zoom, loupe, detail patches against the original's); sign off one result per image (auto-picked until overridden) or apply one choice to all; download one file, a ZIP of all, or write into a folder.
 
@@ -32,3 +32,4 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 - Empty state: logo mark, one headline, Choose images / Choose folder, paste and sample hints; dragging tints the whole surface with an accent ring (no dashed box).
 - Image switching: the blurred thumbnail holds the frame until the full image has decoded, then the sharp image fades in; neighbours are decoded ahead.
+- Studio pass (rename to Rast): the mark leaves cyan for ink on graphite; top-bar ghost buttons lose their outlines so only the cyan primary has a shape at rest; strip groups are labelled by format alone.

@@ -20,7 +20,7 @@ export function ingestTransfer(dt: DataTransfer) {
   void ingest(fromDataTransfer(dt))
 }
 
-/** AI-generated sample photos (public/samples), for trying Rastero without images at hand: a camera JPEG and a product PNG. */
+/** AI-generated sample photos (public/samples), for trying Rast without images at hand: a camera JPEG and a product PNG. */
 const SAMPLES = ['street-cafe.jpg', 'oak-chair.png']
 
 export function loadSamples() {

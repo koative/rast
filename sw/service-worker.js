@@ -1,8 +1,9 @@
-/* Rastero service worker: offline after first use. The build fills in VERSION and SHELL (scope-relative). */
+/* Rast service worker: offline after first use. The build fills in VERSION and SHELL (scope-relative). */
 const VERSION = '__VERSION__'
-/** Path the app is served under (e.g. '/rastero/' on GitHub Pages); other sites on the origin are left alone. */
+/** Path the app is served under (e.g. '/rast/' on GitHub Pages); other sites on the origin are left alone. */
 const BASE = new URL(self.registration.scope).pathname
 const SHELL = __SHELL__
+// The 'rastero-' prefix predates the rename to Rast; keeping it lets this worker clear the old build's caches.
 const SHELL_CACHE = `rastero-shell-${VERSION}`
 const ASSET_CACHE = `rastero-assets-${VERSION}`
 

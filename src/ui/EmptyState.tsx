@@ -6,7 +6,7 @@ import './EmptyState.css'
 
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 
-/** First run: one clear drop target, the two ways in, what Rastero reads and writes, and where its source is. */
+/** First run: one clear drop target, the two ways in, what Rast reads and writes, and where its source is. */
 export function EmptyState({ dragging }: { dragging: boolean }) {
   // Phones can't drop files, paste from a keyboard, or pick folders; offer what they can do.
   const touchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches

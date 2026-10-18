@@ -1,6 +1,6 @@
 {
-  "name": "Rastero",
-  "short_name": "Rastero",
+  "name": "Rast",
+  "short_name": "Rast",
   "description": "Compress images in your browser: every format and quality measured side by side. Nothing leaves your device.",
   "start_url": "./",
   "scope": "./",

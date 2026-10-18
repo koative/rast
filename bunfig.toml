@@ -1,0 +1,4 @@
+[install]
+# Vite's dev server only serves files inside the project. Bun's global virtual store would link packages
+# (codec .wasm, fonts) from ~/.bun, outside it, and every encode would fail in dev.
+globalStore = false
