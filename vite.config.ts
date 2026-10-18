@@ -12,7 +12,7 @@ const SOURCE_URL = String(PACKAGE.repository.url).replace(/^git\+/, '').replace(
 
 /**
  * Relative base: every URL in the build resolves against the page, so the same build works at a domain
- * root or under any path GitHub Pages gives the repository (koray.dev/rast/) without naming it here.
+ * root or under any path GitHub Pages gives the repository (koative.github.io/rast/) without naming it here.
  */
 const BASE = './'
 

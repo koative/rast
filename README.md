@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://koray.dev/rast/"><strong>Open Rast →</strong></a>
+  <a href="https://koative.github.io/rast/"><strong>Open Rast →</strong></a>
 </p>
 
 ![Rast comparing AVIF, WebP, JPEG and PNG results for a folder of photos](docs/proof.webp)

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Vite + React + TypeScript, Bun as package manager, script runner and test runner. Image codecs are WebAssembly (jSquash: MozJPEG, libwebp, libavif, OxiPNG, libjxl; libimagequant; libheif for HEIC input) running in a Web Worker pool. Deployed as a static site on GitHub Pages at https://koray.dev/rast/ (relative asset base, CSP as a meta tag). License: GPL-3.0-or-later, because the bundled libimagequant (lossy PNG) is GPL; the build ships every third-party license in licenses.txt and the app links to its source.
+Vite + React + TypeScript, Bun as package manager, script runner and test runner. Image codecs are WebAssembly (jSquash: MozJPEG, libwebp, libavif, OxiPNG, libjxl; libimagequant; libheif for HEIC input) running in a Web Worker pool. Deployed as a static site on GitHub Pages at https://koative.github.io/rast/ (relative asset base, CSP as a meta tag). License: GPL-3.0-or-later, because the bundled libimagequant (lossy PNG) is GPL; the build ships every third-party license in licenses.txt and the app links to its source.
 
 ## Users
 
@@ -39,7 +39,7 @@ Other browser compressors make you pick one output format first (Squoosh: one im
 
 ## Brand Commitments
 
-- Name: Rast (renamed from Rastero; short for raster, and Turkish "rast gitmek", to go right). Repository raelsei/rast.
+- Name: Rast (renamed from Rastero; short for raster, and Turkish "rast gitmek", to go right). Repository koative/rast.
 - Studio restraint: the brand mark is neutral (ink on graphite); colour belongs to the photographs and to the one action cyan.
 - Dark interface.
 - Reference for tone and craft: Photoroom: simple, focused, high quality.

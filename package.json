@@ -5,12 +5,12 @@
   "description": "Compress images in the browser: every format and quality measured side by side. Nothing leaves your device.",
   "license": "GPL-3.0-or-later",
   "author": "Koray Guler (https://koray.dev)",
-  "homepage": "https://koray.dev/rast/",
+  "homepage": "https://koative.github.io/rast/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raelsei/rast.git"
+    "url": "git+https://github.com/koative/rast.git"
   },
-  "bugs": "https://github.com/raelsei/rast/issues",
+  "bugs": "https://github.com/koative/rast/issues",
   "keywords": ["image-compression", "avif", "webp", "jpeg-xl", "mozjpeg", "webassembly", "pwa", "privacy"],
   "type": "module",
   "scripts": {
