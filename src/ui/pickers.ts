@@ -38,7 +38,7 @@ export function loadSamples() {
 
 async function ingest(pending: Promise<IngestResult>) {
   try {
-    addFiles(await pending)
+    await addFiles(await pending)
   } catch (error) {
     notify(`Couldn't read those files: ${error instanceof Error ? error.message : 'unknown error'}`)
   }

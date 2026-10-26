@@ -210,7 +210,9 @@ function ensureTiers(id: string) {
 /** Sources every browser can show in an <img> straight away; the rest wait for the probe's decoded PNG. */
 const NATIVE_DISPLAY: Partial<Record<SourceType, true>> = { jpeg: true, png: true, gif: true, webp: true, avif: true, bmp: true }
 
-export function addFiles({ files, skipped }: IngestResult) {
+export async function addFiles({ files, skipped }: IngestResult) {
+  // New images join the saved session once it is back: before that they would take its ids and be replaced by it.
+  await restoreSession()
   if (skipped.length > 0) {
     notify(`${skipped.length} ${skipped.length === 1 ? 'file' : 'files'} skipped: not a supported image`)
   }
@@ -423,7 +425,8 @@ export function resetTune(id: string, format: FormatId) {
 
 /**
  * Sign off one format and quality for every readable image, encoding it where that exact result does not
- * exist yet. Images with transparency skip formats that cannot keep it and hold their current pick.
+ * exist yet. A format that cannot keep transparency skips images that have it, and images still being read
+ * (transparency not known yet); both hold their current pick.
  */
 export function applyToAll(format: FormatId, quality: number | null) {
   const { images, order } = useSession.getState()
@@ -431,11 +434,16 @@ export function applyToAll(format: FormatId, quality: number | null) {
   const key = variantKey({ format, quality })
   let applied = 0
   let kept = 0
+  let unread = 0
   for (const id of order) {
     const image = images[id]
     if (image.status === 'error') continue
-    if (image.hasAlpha && !def.supportsAlpha) {
+    if (!def.supportsAlpha && image.hasAlpha) {
       kept++
+      continue
+    }
+    if (!def.supportsAlpha && image.status === 'probing') {
+      unread++
       continue
     }
     if (image.variants[key] || quality === null) pin(id, key)
@@ -445,7 +453,8 @@ export function applyToAll(format: FormatId, quality: number | null) {
   const name = quality === null ? def.label : `${def.label} q${quality}`
   notify(
     `${name} applied to ${applied} ${applied === 1 ? 'image' : 'images'}` +
-      (kept > 0 ? ` · ${kept} with transparency kept their pick` : ''),
+      (kept > 0 ? ` · ${kept} with transparency kept their pick` : '') +
+      (unread > 0 ? ` · ${unread} still loading, apply again once ready` : ''),
   )
 }
 
@@ -482,13 +491,13 @@ function savedMeta(): SavedMeta {
 }
 
 /* Order, selection, view and sign-offs are written after changes settle (they change on every click). */
-let metaTimer: number | undefined
+let metaTimer: ReturnType<typeof setTimeout> | undefined
 let lastMeta = ''
 useSession.subscribe((state, previous) => {
   if (!state.restored) return
   if (state.order === previous.order && state.selectedId === previous.selectedId && state.view === previous.view && state.images === previous.images) return
-  window.clearTimeout(metaTimer)
-  metaTimer = window.setTimeout(() => {
+  clearTimeout(metaTimer)
+  metaTimer = setTimeout(() => {
     const meta = savedMeta()
     const text = JSON.stringify(meta)
     if (text === lastMeta) return
@@ -497,8 +506,14 @@ useSession.subscribe((state, previous) => {
   }, 250)
 })
 
-/** Brings back the last session from this browser's storage; tiers that never finished are queued again. */
-export async function restoreSession() {
+let restoring: Promise<void> | undefined
+
+/** Brings back the last session from this browser's storage, once; tiers that never finished are queued again. */
+export function restoreSession(): Promise<void> {
+  return (restoring ??= readSavedSession())
+}
+
+async function readSavedSession() {
   let saved: SavedSession | null = null
   try {
     saved = await loadSaved()

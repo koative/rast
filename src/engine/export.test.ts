@@ -25,6 +25,17 @@ describe('dedupePaths', () => {
     expect(paths('v1.2/readme', 'v1.2/readme')).toEqual(['v1.2/readme', 'v1.2/readme (2)'])
   })
 
+  test('a file never takes the name of a folder, whichever comes first', () => {
+    expect(paths('photo.avif', 'photo.avif/second.avif')).toEqual(['photo (2).avif', 'photo.avif/second.avif'])
+    expect(paths('photo.avif/second.avif', 'photo.avif')).toEqual(['photo.avif/second.avif', 'photo (2).avif'])
+    expect(paths('photo.avif', 'Photo.avif/second.avif')).toEqual(['photo (2).avif', 'Photo.avif/second.avif'])
+    expect(paths('a/b', 'a/b/c/d.png')).toEqual(['a/b (2)', 'a/b/c/d.png'])
+  })
+
+  test('a renamed file does not land on a folder either', () => {
+    expect(paths('x.avif', 'x.avif/a.avif', 'x (2).avif/b.avif')).toEqual(['x (3).avif', 'x.avif/a.avif', 'x (2).avif/b.avif'])
+  })
+
   test('keeps the blob and other fields', () => {
     const date = new Date(0)
     const [, second] = dedupePaths([

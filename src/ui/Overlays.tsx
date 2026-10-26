@@ -46,6 +46,8 @@ const SHORTCUTS: Array<[string, string]> = [
   ['← →', 'Previous / next result'],
   ['Space', 'Hold to see the original'],
   ['Z', 'Fit / actual pixels'],
+  ['Tab, then ← →', 'Move the divider'],
+  ['Tab, then arrows', 'Pan at 1:1 (⇧ faster)'],
   ['L', 'Loupe'],
   ['G / E', 'Grid / proof view'],
   ['D', 'Download the picked result'],

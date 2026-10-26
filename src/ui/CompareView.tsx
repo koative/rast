@@ -1,6 +1,14 @@
-import { useLayoutEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+} from 'react'
 import { ChevronsLeftRight, Download, Keyboard, Maximize, ScanSearch, Trash2 } from 'lucide-react'
 import { formatBytes } from '../engine/format-bytes'
+import { shownResult } from '../state/pick'
 import { downloadVariant, removeImage } from '../state/session'
 import { ORIGINAL, type ImageEntry, type Variant } from '../state/types'
 import { useViewer } from '../state/viewer'
@@ -13,6 +21,14 @@ const MARGIN_X = 84
 const MARGIN_X_COMPACT = 16
 const MARGIN_TOP = 65
 const MARGIN_BOTTOM = 23
+/** Keyboard pan at 1:1, in CSS px per arrow press; Shift moves five times as far. */
+const PAN_STEP = 40
+const PAN_KEYS: Partial<Record<string, [number, number]>> = {
+  ArrowLeft: [1, 0],
+  ArrowRight: [-1, 0],
+  ArrowUp: [0, 1],
+  ArrowDown: [0, -1],
+}
 /** Below this stage width the proof sizes to its image and the stage scrolls. */
 const COMPACT = 700
 /** Height reserved under a compact proof for the horizontal view tools. */
@@ -63,10 +79,8 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
   const originalReady = decodedOriginal !== null && decodedOriginal === image.originalUrl
   const wantedResult = variant?.status === 'done' ? variant.viewUrl : null
   const decodedResult = useDecoded(wantedResult)
-  // While a newly picked result decodes, the previous result of this same image stays on screen.
-  const resultUrl =
-    decodedResult && Object.values(image.variants).some((v) => v.viewUrl === decodedResult) ? decodedResult : null
-  const shownResult = resultUrl ? Object.values(image.variants).find((v) => v.viewUrl === resultUrl)! : null
+  const shown = shownResult(image, pickKey, decodedResult)
+  const resultUrl = shown?.viewUrl ?? null
 
   // Single-column layouts (phones, phones in landscape) size the proof to its image and let the stage scroll.
   const compact = area.width > 0 && (area.width < COMPACT || window.innerWidth <= 860)
@@ -95,6 +109,19 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
   const imgTop = (proofH - imgH) / 2 + panY
   const splitX = split * proofW
 
+  const panTo = (x: number, y: number) =>
+    setUserPan({ key: panKey, x: clamp(x, -maxPanX, maxPanX) - openX, y: clamp(y, -maxPanY, maxPanY) - openY })
+
+  // Arrows pan here instead of switching images and results (the app-wide shortcuts never see them).
+  const onPanKey = (event: ReactKeyboardEvent) => {
+    const dir = PAN_KEYS[event.key]
+    if (!dir || event.metaKey || event.ctrlKey || event.altKey) return
+    event.preventDefault()
+    event.stopPropagation()
+    const step = event.shiftKey ? PAN_STEP * 5 : PAN_STEP
+    panTo(panX + dir[0] * step, panY + dir[1] * step)
+  }
+
   const moveSplit = (event: ReactPointerEvent<HTMLDivElement>) => {
     const box = event.currentTarget.getBoundingClientRect()
     useViewer.setState({ split: clamp((event.clientX - box.left) / box.width, 0, 1) })
@@ -121,11 +148,7 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
       else if (dx > 6) drag.intent = 'drag'
     }
     if (drag?.mode === 'split' && drag.intent === 'drag') moveSplit(event)
-    else if (drag?.mode === 'pan') {
-      const x = clamp(drag.panX + event.clientX - drag.startX, -maxPanX, maxPanX) - openX
-      const y = clamp(drag.panY + event.clientY - drag.startY, -maxPanY, maxPanY) - openY
-      setUserPan({ key: panKey, x, y })
-    }
+    else if (drag?.mode === 'pan') panTo(drag.panX + event.clientX - drag.startX, drag.panY + event.clientY - drag.startY)
     if (loupe && natural) {
       const box = event.currentTarget.getBoundingClientRect()
       const ix = (event.clientX - box.left - imgLeft) / scale
@@ -171,6 +194,16 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
       )}
       {ready && (
         <div className="proof" style={{ left: proofLeft, top: proofTop, width: proofW, height: proofH }}>
+          {/* Keyboard pan target: reachable by Tab, never by a click, so pointer users keep ←/→ for results. */}
+          {zoom === 'actual' && (maxPanX > 0 || maxPanY > 0) && (
+            <div
+              className="proof-pan visually-hidden"
+              tabIndex={0}
+              role="group"
+              aria-label="Actual pixels: arrow keys move the image, Shift for larger steps"
+              onKeyDown={onPanKey}
+            />
+          )}
           <div
             className="proof-canvas"
             data-zoom={zoom}
@@ -202,13 +235,24 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
                 <div className="proof-layer" style={{ clipPath: `inset(0 0 0 ${splitX}px)` }}>
                   <img
                     src={resultUrl}
-                    alt={`${image.name}, ${shownResult ? variantName(shownResult) : 'result'}`}
+                    alt={`${image.name}, ${shown ? variantName(shown) : 'result'}`}
                     style={imgStyle}
                     decoding="async"
                     draggable={false}
                   />
                 </div>
                 <div className="proof-divider" style={{ left: splitX }}>
+                  <input
+                    className="proof-split visually-hidden"
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={split}
+                    aria-label="Divider: original on the left, result on the right"
+                    aria-valuetext={`${Math.round(split * 100)}% original`}
+                    onChange={(event) => useViewer.setState({ split: Number(event.currentTarget.value) })}
+                  />
                   <span className="proof-handle">
                     <ChevronsLeftRight />
                   </span>
@@ -224,7 +268,7 @@ export function CompareView({ image, pickKey }: { image: ImageEntry; pickKey: st
               dpr={dpr}
               originalUrl={image.originalUrl}
               resultUrl={resultUrl}
-              resultLabel={shownResult ? variantName(shownResult) : 'Original'}
+              resultLabel={shown ? variantName(shown) : 'Original'}
             />
           )}
         </div>

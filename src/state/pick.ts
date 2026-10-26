@@ -76,3 +76,14 @@ export function pickBytes(image: ImageEntry, key: string | null): number | null 
   const v = image.variants[key]
   return v?.status === 'done' ? v.bytes : null
 }
+
+/**
+ * The result the proof shows, given the last result URL the browser decoded: while a newly picked result
+ * decodes, the previous result of this image stays on screen; with the original (or a failed result) picked,
+ * none is shown.
+ */
+export function shownResult(image: ImageEntry, pickKey: string | null, decodedUrl: string | null): Variant | null {
+  const picked = pickKey && pickKey !== ORIGINAL ? image.variants[pickKey] : undefined
+  if (!picked || picked.status === 'error' || decodedUrl === null) return null
+  return Object.values(image.variants).find((v) => v.viewUrl === decodedUrl) ?? null
+}

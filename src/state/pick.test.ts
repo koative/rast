@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 import { variantKey, type FormatId, type VariantSpec } from '../engine/formats'
-import { autoPick, currentPick, formatVariant } from './pick'
+import { autoPick, currentPick, formatVariant, shownResult } from './pick'
 import { ORIGINAL, type ImageEntry, type Variant, type VariantTier } from './types'
 
 const ALL: FormatId[] = ['avif', 'webp', 'jpeg', 'png-lossy', 'png']
@@ -105,5 +105,27 @@ describe('formatVariant', () => {
   test('uses the single lossless PNG result', () => {
     const img = image([variant({ format: 'png', quality: null }, null, 90_000)])
     expect(formatVariant(img, 'png')?.key).toBe('png')
+  })
+})
+
+describe('shownResult', () => {
+  const avif = { ...variant({ format: 'avif', quality: 55 }, 'balanced', 20_000), viewUrl: 'blob:avif' }
+
+  test('keeps the previous result on screen while a newly picked one is still encoding', () => {
+    const webp = variant({ format: 'webp', quality: 75 }, 'balanced', null, 'encoding')
+    expect(shownResult(image([avif, webp]), webp.key, 'blob:avif')).toBe(avif)
+  })
+
+  test('picking the original shows no result, though one was decoded before', () => {
+    expect(shownResult(image([avif]), ORIGINAL, 'blob:avif')).toBeNull()
+  })
+
+  test('a picked result that failed shows no result', () => {
+    const failed = variant({ format: 'avif', quality: 40 }, 'tuned', null, 'error')
+    expect(shownResult(image([avif, failed]), failed.key, 'blob:avif')).toBeNull()
+  })
+
+  test("another image's decoded result is never shown", () => {
+    expect(shownResult(image([avif]), avif.key, 'blob:other-image')).toBeNull()
   })
 })

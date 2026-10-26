@@ -96,10 +96,16 @@ export async function saveToDirectory(entries: ExportEntry[]): Promise<{ written
   return { written }
 }
 
-/** Same path twice -> 'name (2).ext', 'name (3).ext', … Case-insensitive, never steals an existing path. */
+/**
+ * Same path twice -> 'name (2).ext', 'name (3).ext', … Case-insensitive, never steals an existing path, and
+ * never gives a file the name of a folder in the tree (renaming the file, since a folder rename moves its contents).
+ */
 export function dedupePaths(entries: ExportEntry[]): ExportEntry[] {
   const original = new Set(entries.map((e) => e.path.toLowerCase()))
   const taken = new Set<string>()
+  for (const { path } of entries) {
+    for (let i = path.indexOf('/'); i !== -1; i = path.indexOf('/', i + 1)) taken.add(path.slice(0, i).toLowerCase())
+  }
   return entries.map((entry) => {
     const key = entry.path.toLowerCase()
     if (!taken.has(key)) {

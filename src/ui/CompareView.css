@@ -164,6 +164,13 @@
   pointer-events: none;
 }
 
+/* The divider and the 1:1 pan are keyboard-operable through visually hidden controls; their visible parts carry the ring. */
+.proof-split:focus-visible + .proof-handle,
+.proof-pan:focus-visible + .proof-canvas {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .proof-handle {
   position: absolute;
   top: 50%;

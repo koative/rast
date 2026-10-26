@@ -52,6 +52,8 @@ HEIC is decoded natively on Safari and with libheif (WebAssembly, loaded only wh
 | <kbd>←</kbd> <kbd>→</kbd> | Previous / next result |
 | <kbd>Space</kbd> (hold) | Show the original |
 | <kbd>Z</kbd> | Fit / 1:1 |
+| <kbd>Tab</kbd> to the divider, then <kbd>←</kbd> <kbd>→</kbd> | Move the divider |
+| <kbd>Tab</kbd> to the image at 1:1, then arrows | Pan (<kbd>Shift</kbd> for larger steps) |
 | <kbd>L</kbd> | Loupe |
 | <kbd>D</kbd> | Download the picked result |
 | <kbd>G</kbd> / <kbd>E</kbd> | Batch view / proof view |
