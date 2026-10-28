@@ -15,7 +15,7 @@ export function EmptyState({ dragging }: { dragging: boolean }) {
       <div className="empty-panel">
         <LogoMark size={52} />
         <h1>{dragging ? 'Drop to add' : touchOnly ? 'Choose photos to compress' : 'Drop images or a folder'}</h1>
-        <p>Every format and quality, measured side by side. Nothing leaves your device.</p>
+        <p>Every format and quality, measured side by side. Your images never leave your device.</p>
         <div className="empty-actions">
           <button type="button" className="btn btn-primary" onClick={() => pickFiles(false)}>
             <ImagePlus aria-hidden="true" /> Choose {touchOnly ? 'photos' : 'images'}

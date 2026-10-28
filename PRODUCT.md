@@ -55,6 +55,6 @@ Other browser compressors make you pick one output format first (Squoosh: one im
 
 1. Show the answer, not the settings: every option is already computed and measured when the user looks.
 2. The pixels are the proof: size numbers always sit next to the real encoded image, never alone.
-3. Private by construction: nothing leaves the device, nothing needs an account or a server.
+3. Private by construction: images never leave the device, nothing needs an account or a server. The only outside request is a cookieless Simple Analytics page view.
 4. One image or a thousand: the same flow handles close inspection and folder-scale batches.
 5. Quiet until needed: controls appear where the decision is made, not up front.

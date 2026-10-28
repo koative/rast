@@ -61,7 +61,7 @@ HEIC is decoded natively on Safari and with libheif (WebAssembly, loaded only wh
 
 ## Privacy
 
-There is no server-side code. Files are read and encoded in your browser. The page's Content Security Policy allows connections only back to its own origin, so the app can't send your images anywhere even by mistake. Session data stays in this browser's storage until you clear it.
+There is no server-side code. Files are read and encoded in your browser. The page's Content Security Policy allows connections only back to its own origin and to [Simple Analytics](https://simpleanalytics.com) (cookieless page views, no personal data), so the app can't send your images anywhere even by mistake. Session data stays in this browser's storage until you clear it.
 
 ## How it works
 

@@ -30,17 +30,20 @@ const WASM_PACKAGES = [
 
 /**
  * GitHub Pages cannot send response headers, so production pages carry their Content Security Policy as a
- * meta tag. connect-src 'self' is what makes "nothing leaves your device" enforceable. (frame-ancestors is
- * ignored in meta tags, so it is omitted.) Dev skips it so Vite's inline HMR preamble keeps working.
+ * meta tag. connect-src is what makes "your images never leave your device" enforceable: besides the app's own
+ * origin, only Simple Analytics' cookieless page-view endpoint is reachable. (frame-ancestors is ignored in meta
+ * tags, so it is omitted.) Dev skips it so Vite's inline HMR preamble keeps working.
  */
+const ANALYTICS_SCRIPT = 'https://scripts.simpleanalyticscdn.com'
+const ANALYTICS_QUEUE = 'https://queue.simpleanalyticscdn.com'
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'wasm-unsafe-eval'",
+  `script-src 'self' 'wasm-unsafe-eval' ${ANALYTICS_SCRIPT}`,
   "worker-src 'self' blob:",
-  "img-src 'self' blob: data:",
+  `img-src 'self' blob: data: ${ANALYTICS_QUEUE}`,
   "style-src 'self'",
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self' ${ANALYTICS_QUEUE}`,
   "object-src 'none'",
   "base-uri 'none'",
   "form-action 'none'",

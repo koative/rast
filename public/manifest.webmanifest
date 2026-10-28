@@ -1,7 +1,7 @@
 {
   "name": "Rast",
   "short_name": "Rast",
-  "description": "Compress images in your browser: every format and quality measured side by side. Nothing leaves your device.",
+  "description": "Compress images in your browser: every format and quality measured side by side. Your images never leave your device.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
