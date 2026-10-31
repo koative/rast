@@ -143,4 +143,4 @@ The sample photos in `public/samples/` and the photos in the screenshots are AI-
 
 Built on the codecs of [Squoosh](https://github.com/GoogleChromeLabs/squoosh) by way of [jSquash](https://github.com/jamsinclair/jSquash).
 
-Made by [Koray Güler](https://koray.dev) at [koative](https://koative.com)
+Made by [koative](https://koative.com)
