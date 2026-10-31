@@ -142,3 +142,5 @@ The sample photos in `public/samples/` and the photos in the screenshots are AI-
 ## Credits
 
 Built on the codecs of [Squoosh](https://github.com/GoogleChromeLabs/squoosh) by way of [jSquash](https://github.com/jamsinclair/jSquash).
+
+Made by [koative](https://koative.com)
