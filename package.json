@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Compress images in the browser: every format and quality measured side by side. Your images never leave your device.",
   "license": "GPL-3.0-or-later",
-  "author": "Koray Guler (https://koray.dev)",
+  "author": "koative (https://koative.com)",
   "homepage": "https://rast.koative.com/",
   "repository": {
     "type": "git",

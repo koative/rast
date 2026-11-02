@@ -116,7 +116,7 @@ docs/         README screenshots
 
 Rast is free software, licensed under the [GNU General Public License v3.0 or later](LICENSE).
 
-Copyright (C) 2026 Koray Guler
+Copyright (C) 2026 Koative LLC
 
 **Why GPL:** lossy PNG uses [libimagequant](https://github.com/ImageOptim/libimagequant) (the engine behind pngquant), which is GPL-3.0-or-later. Every build that includes it is a GPL work as a whole, so the project uses one license instead of MIT with an exception. In practice: use, change and redeploy Rast freely; if you distribute it or a modified version, including by hosting it (the browser downloads the code), keep it under the GPL and publish your source.
 
