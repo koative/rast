@@ -63,10 +63,6 @@ export function EmptyState({ dragging }: { dragging: boolean }) {
         <div>
           <dt>Made by</dt>
           <dd>
-            <a className="quiet-link" href="https://koray.dev/" target="_blank" rel="noreferrer">
-              Koray Güler
-            </a>{' '}
-            at{' '}
             <a className="quiet-link" href="https://koative.com/" target="_blank" rel="noreferrer">
               koative
             </a>
